@@ -43,6 +43,13 @@ public class CacheConfiguration {
             createCache(cm, com.vdt.veeapp.domain.User.class.getName());
             createCache(cm, com.vdt.veeapp.domain.Authority.class.getName());
             createCache(cm, com.vdt.veeapp.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.vdt.veeapp.domain.Category.class.getName());
+            createCache(cm, com.vdt.veeapp.domain.SubCategory.class.getName());
+            createCache(cm, com.vdt.veeapp.domain.Category.class.getName() + ".subCategories");
+            createCache(cm, com.vdt.veeapp.domain.Habit.class.getName());
+            createCache(cm, com.vdt.veeapp.domain.Reminder.class.getName());
+            createCache(cm, com.vdt.veeapp.domain.EventTimes.class.getName());
+            createCache(cm, com.vdt.veeapp.domain.Habit.class.getName() + ".eventTimes");
             // jhipster-needle-ehcache-add-entry
         };
     }

@@ -1,0 +1,25 @@
+{
+  "routineveeApp": {
+    "eventTimes": {
+      "home": {
+        "title": "Event Times",
+        "createLabel": "Thêm mới một Event Times",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật Event Times",
+        "notFound": "No Event Times found"
+      },
+      "created": "Một Event Times mới được tạo với định danh {{ param }}",
+      "updated": "Một Event Times cập nhật với định danh {{ param }}",
+      "deleted": "Một Event Times đã xóa với định danh {{ param }}",
+      "delete": {
+        "question": "Bạn có chắc là muốn xóa Event Times {{ id }}?"
+      },
+      "detail": {
+        "title": "Event Times"
+      },
+      "dayOfWeek": "Day Of Week",
+      "startTime": "Start Time",
+      "endTime": "End Time",
+      "habit": "Habit"
+    }
+  }
+}

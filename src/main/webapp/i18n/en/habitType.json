@@ -1,0 +1,9 @@
+{
+  "routineveeApp": {
+    "HabitType": {
+      "null": "",
+      "BUILD": "BUILD",
+      "QUIT": "QUIT"
+    }
+  }
+}

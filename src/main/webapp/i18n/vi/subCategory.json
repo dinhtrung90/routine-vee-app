@@ -1,0 +1,25 @@
+{
+  "routineveeApp": {
+    "subCategory": {
+      "home": {
+        "title": "Sub Categories",
+        "createLabel": "Thêm mới một Sub Category",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật Sub Category",
+        "notFound": "No Sub Categories found"
+      },
+      "created": "Một Sub Category mới được tạo với định danh {{ param }}",
+      "updated": "Một Sub Category cập nhật với định danh {{ param }}",
+      "deleted": "Một Sub Category đã xóa với định danh {{ param }}",
+      "delete": {
+        "question": "Bạn có chắc là muốn xóa Sub Category {{ id }}?"
+      },
+      "detail": {
+        "title": "Sub Category"
+      },
+      "name": "Name",
+      "code": "Code",
+      "description": "Description",
+      "category": "Category"
+    }
+  }
+}

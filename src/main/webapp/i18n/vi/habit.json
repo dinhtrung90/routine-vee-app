@@ -1,0 +1,31 @@
+{
+  "routineveeApp": {
+    "habit": {
+      "home": {
+        "title": "Habits",
+        "createLabel": "Thêm mới một Habit",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật Habit",
+        "notFound": "No Habits found"
+      },
+      "created": "Một Habit mới được tạo với định danh {{ param }}",
+      "updated": "Một Habit cập nhật với định danh {{ param }}",
+      "deleted": "Một Habit đã xóa với định danh {{ param }}",
+      "delete": {
+        "question": "Bạn có chắc là muốn xóa Habit {{ id }}?"
+      },
+      "detail": {
+        "title": "Habit"
+      },
+      "name": "Name",
+      "type": "Type",
+      "goalPeriod": "Goal Period",
+      "completionGoal": "Completion Goal",
+      "isGroupTracking": "Is Group Tracking",
+      "noteText": "Note Text",
+      "motivateText": "Motivate Text",
+      "isReminder": "Is Reminder",
+      "reminder": "Reminder",
+      "eventTimes": "Event Times"
+    }
+  }
+}
