@@ -56,6 +56,11 @@ spring:
         prepStmtCacheSize: 250
         prepStmtCacheSqlLimit: 2048
         useServerPrepStmts: true
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      maximum-pool-size: 10
+
   jpa:
     show-sql: true
     properties:
@@ -122,12 +127,12 @@ jhipster:
     base-url: http://127.0.0.1:8080
   metrics:
     logs: # Reports metrics in the logs
-      enabled: false
+      enabled: true
       report-frequency: 60 # in seconds
   logging:
     use-json-format: false # By default, logs are not in Json format
     logstash: # Forward logs to logstash over a socket, used by LoggingConfiguration
-      enabled: false
+      enabled: true
       host: localhost
       port: 5000
       queue-size: 512
