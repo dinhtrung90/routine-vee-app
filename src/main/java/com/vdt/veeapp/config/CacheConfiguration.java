@@ -50,6 +50,12 @@ public class CacheConfiguration {
             createCache(cm, com.vdt.veeapp.domain.Reminder.class.getName());
             createCache(cm, com.vdt.veeapp.domain.EventTimes.class.getName());
             createCache(cm, com.vdt.veeapp.domain.Habit.class.getName() + ".eventTimes");
+            createCache(cm, com.vdt.veeapp.domain.UserProfile.class.getName());
+            createCache(cm, com.vdt.veeapp.domain.FollowingRelationships.class.getName());
+            createCache(cm, com.vdt.veeapp.domain.UserGroups.class.getName());
+            createCache(cm, com.vdt.veeapp.domain.UserGroups.class.getName() + ".users");
+            createCache(cm, com.vdt.veeapp.domain.UserGroups.class.getName() + ".userProfiles");
+            createCache(cm, com.vdt.veeapp.domain.UserProfile.class.getName() + ".userGroups");
             // jhipster-needle-ehcache-add-entry
         };
     }

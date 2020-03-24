@@ -12,6 +12,9 @@
         "habit": "Habit",
         "reminder": "Reminder",
         "eventTimes": "Event Times",
+        "userProfile": "User Profile",
+        "followingRelationships": "Following Relationships",
+        "userGroups": "User Groups",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

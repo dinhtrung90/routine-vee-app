@@ -45,6 +45,52 @@ values ("EXERCIES MINUTES", "EXERCIES-MINUTES", "", 12);
 
 
 INSERT into sub_category(name, code, description, category_id)
-values ("EXERCIES MINUTES", "EXERCIES-MINUTES", "", 13);
+values ("SKIP DESSERT", "SKIP-DESSERT", "", 13);
+
+INSERT into sub_category(name, code, description, category_id)
+values ("SKIP LATTE", "SKIP-LATE", "", 13);
+
+INSERT into sub_category(name, code, description, category_id)
+values ("SKIP DRINK", "SKIP-DRINK", "", 13);
+
+INSERT into sub_category(name, code, description, category_id)
+values ("SKIP SOCIAL MEDIA", "SKIP-SOCIAL-MEDIA", "", 13);
+
+INSERT into sub_category(name, code, description, category_id)
+values ("NO PHONE AT DINNER", "NO PHONE AT DINNER", "", 13);
+
+INSERT into sub_category(name, code, description, category_id)
+values ("SKIP FAST FOOD", "NO PHONE AT DINNER", "", 13);
+
+INSERT into sub_category(name, code, description, category_id)
+values ("IN BED BY MIDNIGHT", "IN-BED-BY-MIDNIGHT", "", 14);
+
+INSERT into sub_category(name, code, description, category_id)
+values ("WAKE UP EARLY", "WAKE UP EARLY", "", 14);
 
 
+INSERT into sub_category(name, code, description, category_id)
+values ("EAT AT HOME", "EAT AT HOME", "", 15);
+
+INSERT into sub_category(name, code, description, category_id)
+values ("PUT MONEY IN SAVINGS", "PUT MONEY IN SAVINGS", "", 15);
+
+INSERT into sub_category(name, code, description, category_id)
+values ("BRING LUNCH", "BRING LUNCH", "", 15);
+
+INSERT into sub_category(name, code, description, category_id)
+values ("MEETING ONE NEW PERSON", "", "", 16);
+
+INSERT into sub_category(name, code, description, category_id)
+values ("WRITE IN A JOURNAL", "WRITE IN A JOURNAL", "", 16);
+
+INSERT into sub_category(name, code, description, category_id)
+values ("TRY ONE NEW THING", "TRY ONE NEW THING", "", 16);
+
+
+INSERT into sub_category(name, code, description, category_id)
+values ("READ 1 BOOK A MONTH", "READ 1 BOOK A MONTH", "", 16);
+
+
+INSERT into sub_category(name, code, description, category_id)
+values ("READ 10 MINUTES", "READ 10 MINUTES", "", 16);

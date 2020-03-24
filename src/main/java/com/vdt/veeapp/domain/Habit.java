@@ -14,6 +14,7 @@ import java.util.Set;
 import com.vdt.veeapp.domain.enumeration.HabitType;
 
 import com.vdt.veeapp.domain.enumeration.Period;
+import org.hibernate.annotations.Fetch;
 
 /**
  * A Habit.
@@ -66,7 +67,7 @@ public class Habit implements Serializable {
     @JoinColumn(name = "id")
     private Reminder reminder;
 
-    @OneToMany(mappedBy = "habit")
+    @OneToMany(mappedBy = "habit", fetch = FetchType.LAZY)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<EventTimes> eventTimes = new HashSet<>();
 

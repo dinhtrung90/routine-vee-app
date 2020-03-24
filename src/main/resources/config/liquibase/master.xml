@@ -19,9 +19,18 @@
     <include file="config/liquibase/changelog/20200314004610_added_entity_Habit.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200314010858_added_entity_Reminder.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200314011510_added_entity_EventTimes.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200322071453_added_entity_UserProfile.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200322073639_added_entity_FollowingRelationships.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200322083027_added_entity_UserGroups.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20200313142056_added_entity_constraints_SubCategory.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200314004610_added_entity_constraints_Habit.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200314011510_added_entity_constraints_EventTimes.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200322071453_added_entity_constraints_UserProfile.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200322073639_added_entity_constraints_FollowingRelationships.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200322083027_added_entity_constraints_UserGroups.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+    <include file="config/liquibase/changelog/20200323115412_changelog.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200323143710_changelog.xml" relativeToChangelogFile="false"/>
+
 </databaseChangeLog>

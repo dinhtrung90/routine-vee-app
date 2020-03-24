@@ -32,6 +32,18 @@ import reminder, {
 import eventTimes, {
   EventTimesState
 } from 'app/entities/event-times/event-times.reducer';
+// prettier-ignore
+import userProfile, {
+  UserProfileState
+} from 'app/entities/user-profile/user-profile.reducer';
+// prettier-ignore
+import followingRelationships, {
+  FollowingRelationshipsState
+} from 'app/entities/following-relationships/following-relationships.reducer';
+// prettier-ignore
+import userGroups, {
+  UserGroupsState
+} from 'app/entities/user-groups/user-groups.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 export interface IRootState {
@@ -50,6 +62,9 @@ export interface IRootState {
   readonly habit: HabitState;
   readonly reminder: ReminderState;
   readonly eventTimes: EventTimesState;
+  readonly userProfile: UserProfileState;
+  readonly followingRelationships: FollowingRelationshipsState;
+  readonly userGroups: UserGroupsState;
   /* jhipster-needle-add-reducer-type - JHipster will add reducer type here */
   readonly loadingBar: any;
 }
@@ -70,6 +85,9 @@ const rootReducer = combineReducers<IRootState>({
   habit,
   reminder,
   eventTimes,
+  userProfile,
+  followingRelationships,
+  userGroups,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar
 });
