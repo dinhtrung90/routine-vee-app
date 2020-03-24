@@ -1,0 +1,72 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="trungvu (generated)" id="1584963458923-21">
+        <dropForeignKeyConstraint baseTableName="user_groups_user" constraintName="fk_user_groups_user_user_groups_id"/>
+    </changeSet>
+    <changeSet author="trungvu (generated)" id="1584963458923-22">
+        <dropForeignKeyConstraint baseTableName="user_groups_user" constraintName="fk_user_groups_user_user_id"/>
+    </changeSet>
+    <changeSet author="trungvu (generated)" id="1584963458923-23">
+        <dropTable tableName="user_groups_user"/>
+    </changeSet>
+    <changeSet author="trungvu (generated)" id="1584963458923-1">
+        <dropDefaultValue columnDataType="varchar(20)" columnName="activation_key" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="trungvu (generated)" id="1584963458923-2">
+        <dropDefaultValue columnDataType="varchar(255)" columnName="avartar_url" tableName="user_profile"/>
+    </changeSet>
+    <changeSet author="trungvu (generated)" id="1584963458923-3">
+        <dropDefaultValue columnDataType="varchar(255)" columnName="avata_group_url" tableName="user_groups"/>
+    </changeSet>
+    <changeSet author="trungvu (generated)" id="1584963458923-4">
+        <dropDefaultValue columnDataType="varchar(255)" columnName="cover_u_rl" tableName="user_profile"/>
+    </changeSet>
+    <changeSet author="trungvu (generated)" id="1584963458923-5">
+        <dropDefaultValue columnDataType="varchar(255)" columnName="description" tableName="category"/>
+    </changeSet>
+    <changeSet author="trungvu (generated)" id="1584963458923-6">
+        <dropDefaultValue columnDataType="varchar(255)" columnName="description" tableName="sub_category"/>
+    </changeSet>
+    <changeSet author="trungvu (generated)" id="1584963458923-7">
+        <dropDefaultValue columnDataType="varchar(254)" columnName="email" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="trungvu (generated)" id="1584963458923-8">
+        <dropDefaultValue columnDataType="varchar(255)" columnName="event_type" tableName="jhi_persistent_audit_event"/>
+    </changeSet>
+    <changeSet author="trungvu (generated)" id="1584963458923-9">
+        <dropDefaultValue columnDataType="varchar(50)" columnName="first_name" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="trungvu (generated)" id="1584963458923-10">
+        <dropDefaultValue columnDataType="varchar(255)" columnName="full_name" tableName="user_profile"/>
+    </changeSet>
+    <changeSet author="trungvu (generated)" id="1584963458923-11">
+        <dropDefaultValue columnDataType="varchar(256)" columnName="image_url" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="trungvu (generated)" id="1584963458923-12">
+        <dropDefaultValue columnDataType="varchar(10)" columnName="lang_key" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="trungvu (generated)" id="1584963458923-13">
+        <dropDefaultValue columnDataType="varchar(50)" columnName="last_modified_by" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="trungvu (generated)" id="1584963458923-14">
+        <dropDefaultValue columnDataType="varchar(50)" columnName="last_name" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="trungvu (generated)" id="1584963458923-15">
+        <dropDefaultValue columnDataType="varchar(255)" columnName="motivate_text" tableName="habit"/>
+    </changeSet>
+    <changeSet author="trungvu (generated)" id="1584963458923-16">
+        <dropDefaultValue columnDataType="varchar(255)" columnName="name" tableName="user_groups"/>
+    </changeSet>
+    <changeSet author="trungvu (generated)" id="1584963458923-17">
+        <dropDefaultValue columnDataType="varchar(255)" columnName="note_text" tableName="habit"/>
+    </changeSet>
+    <changeSet author="trungvu (generated)" id="1584963458923-18">
+        <dropDefaultValue columnDataType="varchar(20)" columnName="reset_key" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="trungvu (generated)" id="1584963458923-19">
+        <dropDefaultValue columnDataType="varchar(255)" columnName="thumb_url" tableName="category"/>
+    </changeSet>
+    <changeSet author="trungvu (generated)" id="1584963458923-20">
+        <dropDefaultValue columnDataType="varchar(255)" columnName="value" tableName="jhi_persistent_audit_evt_data"/>
+    </changeSet>
+</databaseChangeLog>

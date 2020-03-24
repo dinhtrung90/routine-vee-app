@@ -1,0 +1,25 @@
+{
+  "routineveeApp": {
+    "followingRelationships": {
+      "home": {
+        "title": "Following Relationships",
+        "createLabel": "Create a new Following Relationships",
+        "createOrEditLabel": "Create or edit a Following Relationships",
+        "notFound": "No Following Relationships found"
+      },
+      "created": "A new Following Relationships is created with identifier {{ param }}",
+      "updated": "A Following Relationships is updated with identifier {{ param }}",
+      "deleted": "A Following Relationships is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Following Relationships {{ id }}?"
+      },
+      "detail": {
+        "title": "Following Relationships"
+      },
+      "dateFollowed": "Date Followed",
+      "actionUserId": "Action User Id",
+      "user": "User",
+      "userFollowing": "User Following"
+    }
+  }
+}

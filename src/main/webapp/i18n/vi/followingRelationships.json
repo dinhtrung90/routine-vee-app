@@ -1,0 +1,25 @@
+{
+  "routineveeApp": {
+    "followingRelationships": {
+      "home": {
+        "title": "Following Relationships",
+        "createLabel": "Thêm mới một Following Relationships",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật Following Relationships",
+        "notFound": "No Following Relationships found"
+      },
+      "created": "Một Following Relationships mới được tạo với định danh {{ param }}",
+      "updated": "Một Following Relationships cập nhật với định danh {{ param }}",
+      "deleted": "Một Following Relationships đã xóa với định danh {{ param }}",
+      "delete": {
+        "question": "Bạn có chắc là muốn xóa Following Relationships {{ id }}?"
+      },
+      "detail": {
+        "title": "Following Relationships"
+      },
+      "dateFollowed": "Date Followed",
+      "actionUserId": "Action User Id",
+      "user": "User",
+      "userFollowing": "User Following"
+    }
+  }
+}
