@@ -19,8 +19,8 @@ import { mapIdList } from 'app/shared/util/entity-utils';
 export interface IUserProfileUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
 export const UserProfileUpdate = (props: IUserProfileUpdateProps) => {
-  const [idsuserGroups, setIdsuserGroups] = useState([]);
   const [userId, setUserId] = useState('0');
+  const [userGroupsId, setUserGroupsId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
 
   const { userProfileEntity, users, userGroups, loading, updating } = props;
@@ -48,8 +48,7 @@ export const UserProfileUpdate = (props: IUserProfileUpdateProps) => {
     if (errors.length === 0) {
       const entity = {
         ...userProfileEntity,
-        ...values,
-        userGroups: mapIdList(values.userGroups)
+        ...values
       };
       entity.user = users[values.user];
 
@@ -125,28 +124,6 @@ export const UserProfileUpdate = (props: IUserProfileUpdateProps) => {
                     ? users.map(otherEntity => (
                         <option value={otherEntity.id} key={otherEntity.id}>
                           {otherEntity.login}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
-              </AvGroup>
-              <AvGroup>
-                <Label for="user-profile-userGroups">
-                  <Translate contentKey="routineveeApp.userProfile.userGroups">User Groups</Translate>
-                </Label>
-                <AvInput
-                  id="user-profile-userGroups"
-                  type="select"
-                  multiple
-                  className="form-control"
-                  name="userGroups"
-                  value={userProfileEntity.userGroups && userProfileEntity.userGroups.map(e => e.id)}
-                >
-                  <option value="" key="0" />
-                  {userGroups
-                    ? userGroups.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
                         </option>
                       ))
                     : null}

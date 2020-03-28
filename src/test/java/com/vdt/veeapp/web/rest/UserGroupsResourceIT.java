@@ -2,6 +2,7 @@ package com.vdt.veeapp.web.rest;
 
 import com.vdt.veeapp.RoutineveeApp;
 import com.vdt.veeapp.domain.UserGroups;
+import com.vdt.veeapp.domain.UserProfile;
 import com.vdt.veeapp.repository.UserGroupsRepository;
 import com.vdt.veeapp.service.UserGroupsService;
 import com.vdt.veeapp.service.dto.UserGroupsDTO;
@@ -11,9 +12,14 @@ import com.vdt.veeapp.service.UserGroupsQueryService;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -21,10 +27,12 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -32,7 +40,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Integration tests for the {@link UserGroupsResource} REST controller.
  */
 @SpringBootTest(classes = RoutineveeApp.class)
-
+@ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
 @WithMockUser
 public class UserGroupsResourceIT {
@@ -49,8 +57,14 @@ public class UserGroupsResourceIT {
     @Autowired
     private UserGroupsRepository userGroupsRepository;
 
+    @Mock
+    private UserGroupsRepository userGroupsRepositoryMock;
+
     @Autowired
     private UserGroupsMapper userGroupsMapper;
+
+    @Mock
+    private UserGroupsService userGroupsServiceMock;
 
     @Autowired
     private UserGroupsService userGroupsService;
@@ -156,6 +170,26 @@ public class UserGroupsResourceIT {
             .andExpect(jsonPath("$.[*].createAt").value(hasItem(DEFAULT_CREATE_AT.toString())));
     }
     
+    @SuppressWarnings({"unchecked"})
+    public void getAllUserGroupsWithEagerRelationshipsIsEnabled() throws Exception {
+        when(userGroupsServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restUserGroupsMockMvc.perform(get("/api/user-groups?eagerload=true"))
+            .andExpect(status().isOk());
+
+        verify(userGroupsServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
+    @SuppressWarnings({"unchecked"})
+    public void getAllUserGroupsWithEagerRelationshipsIsNotEnabled() throws Exception {
+        when(userGroupsServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restUserGroupsMockMvc.perform(get("/api/user-groups?eagerload=true"))
+            .andExpect(status().isOk());
+
+        verify(userGroupsServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
     @Test
     @Transactional
     public void getUserGroups() throws Exception {
@@ -399,6 +433,26 @@ public class UserGroupsResourceIT {
         // Get all the userGroupsList where createAt is null
         defaultUserGroupsShouldNotBeFound("createAt.specified=false");
     }
+
+    @Test
+    @Transactional
+    public void getAllUserGroupsByUserProfileIsEqualToSomething() throws Exception {
+        // Initialize the database
+        userGroupsRepository.saveAndFlush(userGroups);
+        UserProfile userProfile = UserProfileResourceIT.createEntity(em);
+        em.persist(userProfile);
+        em.flush();
+        userGroups.addUserProfile(userProfile);
+        userGroupsRepository.saveAndFlush(userGroups);
+        Long userProfileId = userProfile.getId();
+
+        // Get all the userGroupsList where userProfile equals to userProfileId
+        defaultUserGroupsShouldBeFound("userProfileId.equals=" + userProfileId);
+
+        // Get all the userGroupsList where userProfile equals to userProfileId + 1
+        defaultUserGroupsShouldNotBeFound("userProfileId.equals=" + (userProfileId + 1));
+    }
+
     /**
      * Executes the search, and checks that the default entity is returned.
      */

@@ -13,25 +13,18 @@ import com.vdt.veeapp.service.UserProfileQueryService;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
-import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -39,7 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Integration tests for the {@link UserProfileResource} REST controller.
  */
 @SpringBootTest(classes = RoutineveeApp.class)
-@ExtendWith(MockitoExtension.class)
+
 @AutoConfigureMockMvc
 @WithMockUser
 public class UserProfileResourceIT {
@@ -59,14 +52,8 @@ public class UserProfileResourceIT {
     @Autowired
     private UserProfileRepository userProfileRepository;
 
-    @Mock
-    private UserProfileRepository userProfileRepositoryMock;
-
     @Autowired
     private UserProfileMapper userProfileMapper;
-
-    @Mock
-    private UserProfileService userProfileServiceMock;
 
     @Autowired
     private UserProfileService userProfileService;
@@ -195,26 +182,6 @@ public class UserProfileResourceIT {
             .andExpect(jsonPath("$.[*].coverURl").value(hasItem(DEFAULT_COVER_U_RL)));
     }
     
-    @SuppressWarnings({"unchecked"})
-    public void getAllUserProfilesWithEagerRelationshipsIsEnabled() throws Exception {
-        when(userProfileServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-
-        restUserProfileMockMvc.perform(get("/api/user-profiles?eagerload=true"))
-            .andExpect(status().isOk());
-
-        verify(userProfileServiceMock, times(1)).findAllWithEagerRelationships(any());
-    }
-
-    @SuppressWarnings({"unchecked"})
-    public void getAllUserProfilesWithEagerRelationshipsIsNotEnabled() throws Exception {
-        when(userProfileServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-
-        restUserProfileMockMvc.perform(get("/api/user-profiles?eagerload=true"))
-            .andExpect(status().isOk());
-
-        verify(userProfileServiceMock, times(1)).findAllWithEagerRelationships(any());
-    }
-
     @Test
     @Transactional
     public void getUserProfile() throws Exception {
@@ -592,6 +559,7 @@ public class UserProfileResourceIT {
         UserGroups userGroups = UserGroupsResourceIT.createEntity(em);
         em.persist(userGroups);
         em.flush();
+        userProfile.addUserGroups(userGroups);
         userProfileRepository.saveAndFlush(userProfile);
         Long userGroupsId = userGroups.getId();
 

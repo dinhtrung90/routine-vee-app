@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -33,11 +34,12 @@ public class UserGroups implements Serializable {
     @Column(name = "create_at")
     private Instant createAt;
 
-    @ManyToMany(mappedBy = "userGroups")
-    private Set<UserProfile> userProfiles;
-
-    @OneToMany(mappedBy = "userGroup", fetch = FetchType.LAZY)
-    Set<UserProfileGroups> userProfileGroups;
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "user_groups_user_profile",
+               joinColumns = @JoinColumn(name = "user_groups_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "user_profile_id", referencedColumnName = "id"))
+    private Set<UserProfile> userProfiles = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -85,6 +87,31 @@ public class UserGroups implements Serializable {
 
     public void setCreateAt(Instant createAt) {
         this.createAt = createAt;
+    }
+
+    public Set<UserProfile> getUserProfiles() {
+        return userProfiles;
+    }
+
+    public UserGroups userProfiles(Set<UserProfile> userProfiles) {
+        this.userProfiles = userProfiles;
+        return this;
+    }
+
+    public UserGroups addUserProfile(UserProfile userProfile) {
+        this.userProfiles.add(userProfile);
+        userProfile.getUserGroups().add(this);
+        return this;
+    }
+
+    public UserGroups removeUserProfile(UserProfile userProfile) {
+        this.userProfiles.remove(userProfile);
+        userProfile.getUserGroups().remove(this);
+        return this;
+    }
+
+    public void setUserProfiles(Set<UserProfile> userProfiles) {
+        this.userProfiles = userProfiles;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

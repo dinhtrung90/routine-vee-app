@@ -3,7 +3,7 @@ package com.vdt.veeapp.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user_profile_user_groups")
+@Table(name = "user_groups_user_profile")
 public class UserProfileGroups {
 
     @EmbeddedId

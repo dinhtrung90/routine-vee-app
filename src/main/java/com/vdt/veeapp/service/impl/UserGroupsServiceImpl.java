@@ -62,6 +62,15 @@ public class UserGroupsServiceImpl implements UserGroupsService {
     }
 
     /**
+     * Get all the userGroups with eager load of many-to-many relationships.
+     *
+     * @return the list of entities.
+     */
+    public Page<UserGroupsDTO> findAllWithEagerRelationships(Pageable pageable) {
+        return userGroupsRepository.findAllWithEagerRelationships(pageable).map(userGroupsMapper::toDto);
+    }
+
+    /**
      * Get one userGroups by id.
      *
      * @param id the id of the entity.
@@ -71,7 +80,7 @@ public class UserGroupsServiceImpl implements UserGroupsService {
     @Transactional(readOnly = true)
     public Optional<UserGroupsDTO> findOne(Long id) {
         log.debug("Request to get UserGroups : {}", id);
-        return userGroupsRepository.findById(id)
+        return userGroupsRepository.findOneWithEagerRelationships(id)
             .map(userGroupsMapper::toDto);
     }
 

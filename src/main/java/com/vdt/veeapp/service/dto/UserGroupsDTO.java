@@ -2,6 +2,8 @@ package com.vdt.veeapp.service.dto;
 
 import java.time.Instant;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -17,6 +19,7 @@ public class UserGroupsDTO implements Serializable {
 
     private Instant createAt;
 
+    private Set<UserProfileDTO> userProfiles = new HashSet<>();
     
     public Long getId() {
         return id;
@@ -50,6 +53,14 @@ public class UserGroupsDTO implements Serializable {
         this.createAt = createAt;
     }
 
+    public Set<UserProfileDTO> getUserProfiles() {
+        return userProfiles;
+    }
+
+    public void setUserProfiles(Set<UserProfileDTO> userProfiles) {
+        this.userProfiles = userProfiles;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -78,6 +89,7 @@ public class UserGroupsDTO implements Serializable {
             ", name='" + getName() + "'" +
             ", avataGroupUrl='" + getAvataGroupUrl() + "'" +
             ", createAt='" + getCreateAt() + "'" +
+            ", userProfiles='" + getUserProfiles() + "'" +
             "}";
     }
 }

@@ -53,19 +53,6 @@ export const UserProfileDetail = (props: IUserProfileDetailProps) => {
             <Translate contentKey="routineveeApp.userProfile.user">User</Translate>
           </dt>
           <dd>{userProfileEntity.userLogin ? userProfileEntity.userLogin : ''}</dd>
-          <dt>
-            <Translate contentKey="routineveeApp.userProfile.userGroups">User Groups</Translate>
-          </dt>
-          <dd>
-            {userProfileEntity.userGroups
-              ? userProfileEntity.userGroups.map((val, i) => (
-                  <span key={val.id}>
-                    <a>{val.id}</a>
-                    {i === userProfileEntity.userGroups.length - 1 ? '' : ', '}
-                  </span>
-                ))
-              : null}
-          </dd>
         </dl>
         <Button tag={Link} to="/user-profile" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

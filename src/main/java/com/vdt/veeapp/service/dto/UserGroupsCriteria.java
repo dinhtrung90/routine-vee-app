@@ -33,6 +33,8 @@ public class UserGroupsCriteria implements Serializable, Criteria {
 
     private InstantFilter createAt;
 
+    private LongFilter userProfileId;
+
     public UserGroupsCriteria() {
     }
 
@@ -41,6 +43,7 @@ public class UserGroupsCriteria implements Serializable, Criteria {
         this.name = other.name == null ? null : other.name.copy();
         this.avataGroupUrl = other.avataGroupUrl == null ? null : other.avataGroupUrl.copy();
         this.createAt = other.createAt == null ? null : other.createAt.copy();
+        this.userProfileId = other.userProfileId == null ? null : other.userProfileId.copy();
     }
 
     @Override
@@ -80,6 +83,14 @@ public class UserGroupsCriteria implements Serializable, Criteria {
         this.createAt = createAt;
     }
 
+    public LongFilter getUserProfileId() {
+        return userProfileId;
+    }
+
+    public void setUserProfileId(LongFilter userProfileId) {
+        this.userProfileId = userProfileId;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -94,7 +105,8 @@ public class UserGroupsCriteria implements Serializable, Criteria {
             Objects.equals(id, that.id) &&
             Objects.equals(name, that.name) &&
             Objects.equals(avataGroupUrl, that.avataGroupUrl) &&
-            Objects.equals(createAt, that.createAt);
+            Objects.equals(createAt, that.createAt) &&
+            Objects.equals(userProfileId, that.userProfileId);
     }
 
     @Override
@@ -103,7 +115,8 @@ public class UserGroupsCriteria implements Serializable, Criteria {
         id,
         name,
         avataGroupUrl,
-        createAt
+        createAt,
+        userProfileId
         );
     }
 
@@ -114,6 +127,7 @@ public class UserGroupsCriteria implements Serializable, Criteria {
                 (name != null ? "name=" + name + ", " : "") +
                 (avataGroupUrl != null ? "avataGroupUrl=" + avataGroupUrl + ", " : "") +
                 (createAt != null ? "createAt=" + createAt + ", " : "") +
+                (userProfileId != null ? "userProfileId=" + userProfileId + ", " : "") +
             "}";
     }
 

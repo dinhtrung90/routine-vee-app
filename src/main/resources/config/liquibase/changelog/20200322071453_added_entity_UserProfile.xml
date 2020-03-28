@@ -37,17 +37,6 @@
 
     <changeSet id="20200322071453-1-relations" author="jhipster">
 
-        <createTable tableName="user_profile_user_groups">
-            <column name="user_groups_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="user_profile_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-
-        <addPrimaryKey columnNames="user_profile_id, user_groups_id" tableName="user_profile_user_groups"/>
-        
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 

@@ -7,6 +7,8 @@ import { Translate, translate, ICrudGetAction, ICrudGetAllAction, ICrudPutAction
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
+import { IUserProfile } from 'app/shared/model/user-profile.model';
+import { getEntities as getUserProfiles } from 'app/entities/user-profile/user-profile.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './user-groups.reducer';
 import { IUserGroups } from 'app/shared/model/user-groups.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
@@ -15,9 +17,10 @@ import { mapIdList } from 'app/shared/util/entity-utils';
 export interface IUserGroupsUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
 export const UserGroupsUpdate = (props: IUserGroupsUpdateProps) => {
+  const [idsuserProfile, setIdsuserProfile] = useState([]);
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
 
-  const { userGroupsEntity, loading, updating } = props;
+  const { userGroupsEntity, userProfiles, loading, updating } = props;
 
   const handleClose = () => {
     props.history.push('/user-groups');
@@ -27,6 +30,8 @@ export const UserGroupsUpdate = (props: IUserGroupsUpdateProps) => {
     if (!isNew) {
       props.getEntity(props.match.params.id);
     }
+
+    props.getUserProfiles();
   }, []);
 
   useEffect(() => {
@@ -41,7 +46,8 @@ export const UserGroupsUpdate = (props: IUserGroupsUpdateProps) => {
     if (errors.length === 0) {
       const entity = {
         ...userGroupsEntity,
-        ...values
+        ...values,
+        userProfiles: mapIdList(values.userProfiles)
       };
 
       if (isNew) {
@@ -100,6 +106,28 @@ export const UserGroupsUpdate = (props: IUserGroupsUpdateProps) => {
                   value={isNew ? displayDefaultDateTime() : convertDateTimeFromServer(props.userGroupsEntity.createAt)}
                 />
               </AvGroup>
+              <AvGroup>
+                <Label for="user-groups-userProfile">
+                  <Translate contentKey="routineveeApp.userGroups.userProfile">User Profile</Translate>
+                </Label>
+                <AvInput
+                  id="user-groups-userProfile"
+                  type="select"
+                  multiple
+                  className="form-control"
+                  name="userProfiles"
+                  value={userGroupsEntity.userProfiles && userGroupsEntity.userProfiles.map(e => e.id)}
+                >
+                  <option value="" key="0" />
+                  {userProfiles
+                    ? userProfiles.map(otherEntity => (
+                        <option value={otherEntity.id} key={otherEntity.id}>
+                          {otherEntity.id}
+                        </option>
+                      ))
+                    : null}
+                </AvInput>
+              </AvGroup>
               <Button tag={Link} id="cancel-save" to="/user-groups" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
@@ -122,6 +150,7 @@ export const UserGroupsUpdate = (props: IUserGroupsUpdateProps) => {
 };
 
 const mapStateToProps = (storeState: IRootState) => ({
+  userProfiles: storeState.userProfile.entities,
   userGroupsEntity: storeState.userGroups.entity,
   loading: storeState.userGroups.loading,
   updating: storeState.userGroups.updating,
@@ -129,6 +158,7 @@ const mapStateToProps = (storeState: IRootState) => ({
 });
 
 const mapDispatchToProps = {
+  getUserProfiles,
   getEntity,
   updateEntity,
   createEntity,

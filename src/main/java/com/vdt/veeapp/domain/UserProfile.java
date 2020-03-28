@@ -1,9 +1,8 @@
 package com.vdt.veeapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -44,17 +43,10 @@ public class UserProfile implements Serializable {
     @JoinColumn(unique = true)
     private User user;
 
-    @ManyToMany()
+    @ManyToMany(mappedBy = "userProfiles")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JoinTable(name = "user_profile_user_groups",
-               joinColumns = @JoinColumn(name = "user_profile_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "user_groups_id", referencedColumnName = "id"))
-    @Fetch(value = FetchMode.SUBSELECT)
+    @JsonIgnore
     private Set<UserGroups> userGroups = new HashSet<>();
-
-    @OneToMany(mappedBy = "userProfile", fetch = FetchType.LAZY)
-    Set<UserProfileGroups> userProfiles;
-
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -139,6 +131,17 @@ public class UserProfile implements Serializable {
         return this;
     }
 
+    public UserProfile addUserGroups(UserGroups userGroups) {
+        this.userGroups.add(userGroups);
+        userGroups.getUserProfiles().add(this);
+        return this;
+    }
+
+    public UserProfile removeUserGroups(UserGroups userGroups) {
+        this.userGroups.remove(userGroups);
+        userGroups.getUserProfiles().remove(this);
+        return this;
+    }
 
     public void setUserGroups(Set<UserGroups> userGroups) {
         this.userGroups = userGroups;

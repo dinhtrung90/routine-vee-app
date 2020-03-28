@@ -18,7 +18,8 @@
       },
       "name": "Name",
       "avataGroupUrl": "Avata Group Url",
-      "createAt": "Create At"
+      "createAt": "Create At",
+      "userProfile": "User Profile"
     }
   }
 }

@@ -2,8 +2,6 @@ package com.vdt.veeapp.service.dto;
 
 import javax.validation.constraints.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -26,7 +24,6 @@ public class UserProfileDTO implements Serializable {
     private Long userId;
 
     private String userLogin;
-    private Set<UserGroupsDTO> userGroups = new HashSet<>();
     
     public Long getId() {
         return id;
@@ -84,14 +81,6 @@ public class UserProfileDTO implements Serializable {
         this.userLogin = userLogin;
     }
 
-    public Set<UserGroupsDTO> getUserGroups() {
-        return userGroups;
-    }
-
-    public void setUserGroups(Set<UserGroupsDTO> userGroups) {
-        this.userGroups = userGroups;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -123,7 +112,6 @@ public class UserProfileDTO implements Serializable {
             ", coverURl='" + getCoverURl() + "'" +
             ", userId=" + getUserId() +
             ", userLogin='" + getUserLogin() + "'" +
-            ", userGroups='" + getUserGroups() + "'" +
             "}";
     }
 }

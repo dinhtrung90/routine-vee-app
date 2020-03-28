@@ -97,7 +97,6 @@ public class CategoryResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of categories in body.
      */
     @GetMapping("/categories")
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<List<CategoryDTO>> getAllCategories(CategoryCriteria criteria, Pageable pageable) {
         log.debug("REST request to get Categories by criteria: {}", criteria);
         Page<CategoryDTO> page = categoryQueryService.findByCriteria(criteria, pageable);

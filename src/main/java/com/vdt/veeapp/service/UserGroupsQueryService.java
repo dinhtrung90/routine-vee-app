@@ -100,6 +100,10 @@ public class UserGroupsQueryService extends QueryService<UserGroups> {
             if (criteria.getCreateAt() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getCreateAt(), UserGroups_.createAt));
             }
+            if (criteria.getUserProfileId() != null) {
+                specification = specification.and(buildSpecification(criteria.getUserProfileId(),
+                    root -> root.join(UserGroups_.userProfiles, JoinType.LEFT).get(UserProfile_.id)));
+            }
         }
         return specification;
     }

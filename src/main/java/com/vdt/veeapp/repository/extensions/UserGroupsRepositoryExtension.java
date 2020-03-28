@@ -1,6 +1,7 @@
 package com.vdt.veeapp.repository.extensions;
 
 import com.vdt.veeapp.domain.UserGroups;
+import com.vdt.veeapp.domain.UserProfile;
 import com.vdt.veeapp.repository.UserGroupsRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
@@ -13,5 +14,6 @@ import java.util.List;
 @Primary
 public interface UserGroupsRepositoryExtension extends UserGroupsRepository {
 
+    Page<UserGroups> findAllByUserProfilesEquals(Pageable pageable, UserProfile profile);
 
 }

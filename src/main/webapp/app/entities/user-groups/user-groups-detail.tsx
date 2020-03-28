@@ -45,6 +45,19 @@ export const UserGroupsDetail = (props: IUserGroupsDetailProps) => {
           <dd>
             <TextFormat value={userGroupsEntity.createAt} type="date" format={APP_DATE_FORMAT} />
           </dd>
+          <dt>
+            <Translate contentKey="routineveeApp.userGroups.userProfile">User Profile</Translate>
+          </dt>
+          <dd>
+            {userGroupsEntity.userProfiles
+              ? userGroupsEntity.userProfiles.map((val, i) => (
+                  <span key={val.id}>
+                    <a>{val.id}</a>
+                    {i === userGroupsEntity.userProfiles.length - 1 ? '' : ', '}
+                  </span>
+                ))
+              : null}
+          </dd>
         </dl>
         <Button tag={Link} to="/user-groups" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}
