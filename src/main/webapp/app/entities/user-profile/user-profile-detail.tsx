@@ -50,6 +50,18 @@ export const UserProfileDetail = (props: IUserProfileDetailProps) => {
           </dt>
           <dd>{userProfileEntity.coverURl}</dd>
           <dt>
+            <span id="longitude">
+              <Translate contentKey="routineveeApp.userProfile.longitude">Longitude</Translate>
+            </span>
+          </dt>
+          <dd>{userProfileEntity.longitude}</dd>
+          <dt>
+            <span id="latitude">
+              <Translate contentKey="routineveeApp.userProfile.latitude">Latitude</Translate>
+            </span>
+          </dt>
+          <dd>{userProfileEntity.latitude}</dd>
+          <dt>
             <Translate contentKey="routineveeApp.userProfile.user">User</Translate>
           </dt>
           <dd>{userProfileEntity.userLogin ? userProfileEntity.userLogin : ''}</dd>

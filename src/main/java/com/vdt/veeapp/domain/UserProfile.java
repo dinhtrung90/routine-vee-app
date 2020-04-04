@@ -39,6 +39,12 @@ public class UserProfile implements Serializable {
     @Column(name = "cover_u_rl")
     private String coverURl;
 
+    @Column(name = "longitude")
+    private Double longitude;
+
+    @Column(name = "latitude")
+    private Double latitude;
+
     @OneToOne
     @JoinColumn(unique = true)
     private User user;
@@ -109,6 +115,32 @@ public class UserProfile implements Serializable {
         this.coverURl = coverURl;
     }
 
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public UserProfile longitude(Double longitude) {
+        this.longitude = longitude;
+        return this;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public UserProfile latitude(Double latitude) {
+        this.latitude = latitude;
+        return this;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
     public User getUser() {
         return user;
     }
@@ -172,6 +204,8 @@ public class UserProfile implements Serializable {
             ", fullName='" + getFullName() + "'" +
             ", avartarUrl='" + getAvartarUrl() + "'" +
             ", coverURl='" + getCoverURl() + "'" +
+            ", longitude=" + getLongitude() +
+            ", latitude=" + getLatitude() +
             "}";
     }
 }

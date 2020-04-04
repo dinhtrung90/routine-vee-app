@@ -76,6 +76,8 @@ class UserProfileGatlingTest extends Simulation {
                 , "fullName":"SAMPLE_TEXT"
                 , "avartarUrl":"SAMPLE_TEXT"
                 , "coverURl":"SAMPLE_TEXT"
+                , "longitude":null
+                , "latitude":null
                 }""")).asJson
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_userProfile_url"))).exitHereIfFailed

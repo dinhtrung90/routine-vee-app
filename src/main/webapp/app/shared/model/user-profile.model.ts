@@ -6,6 +6,8 @@ export interface IUserProfile {
   fullName?: string;
   avartarUrl?: string;
   coverURl?: string;
+  longitude?: number;
+  latitude?: number;
   userLogin?: string;
   userId?: number;
   userGroups?: IUserGroups[];

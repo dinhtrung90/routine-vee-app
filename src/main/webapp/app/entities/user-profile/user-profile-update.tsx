@@ -115,6 +115,18 @@ export const UserProfileUpdate = (props: IUserProfileUpdateProps) => {
                 <AvField id="user-profile-coverURl" type="text" name="coverURl" />
               </AvGroup>
               <AvGroup>
+                <Label id="longitudeLabel" for="user-profile-longitude">
+                  <Translate contentKey="routineveeApp.userProfile.longitude">Longitude</Translate>
+                </Label>
+                <AvField id="user-profile-longitude" type="string" className="form-control" name="longitude" />
+              </AvGroup>
+              <AvGroup>
+                <Label id="latitudeLabel" for="user-profile-latitude">
+                  <Translate contentKey="routineveeApp.userProfile.latitude">Latitude</Translate>
+                </Label>
+                <AvField id="user-profile-latitude" type="string" className="form-control" name="latitude" />
+              </AvGroup>
+              <AvGroup>
                 <Label for="user-profile-user">
                   <Translate contentKey="routineveeApp.userProfile.user">User</Translate>
                 </Label>

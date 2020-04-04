@@ -104,6 +104,12 @@ export const UserProfile = (props: IUserProfileProps) => {
                   <th className="hand" onClick={sort('coverURl')}>
                     <Translate contentKey="routineveeApp.userProfile.coverURl">Cover U Rl</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
+                  <th className="hand" onClick={sort('longitude')}>
+                    <Translate contentKey="routineveeApp.userProfile.longitude">Longitude</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={sort('latitude')}>
+                    <Translate contentKey="routineveeApp.userProfile.latitude">Latitude</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
                   <th>
                     <Translate contentKey="routineveeApp.userProfile.user">User</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
@@ -122,6 +128,8 @@ export const UserProfile = (props: IUserProfileProps) => {
                     <td>{userProfile.fullName}</td>
                     <td>{userProfile.avartarUrl}</td>
                     <td>{userProfile.coverURl}</td>
+                    <td>{userProfile.longitude}</td>
+                    <td>{userProfile.latitude}</td>
                     <td>{userProfile.userLogin ? userProfile.userLogin : ''}</td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">

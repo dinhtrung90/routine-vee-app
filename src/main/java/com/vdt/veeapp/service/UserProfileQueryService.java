@@ -103,6 +103,12 @@ public class UserProfileQueryService extends QueryService<UserProfile> {
             if (criteria.getCoverURl() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getCoverURl(), UserProfile_.coverURl));
             }
+            if (criteria.getLongitude() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getLongitude(), UserProfile_.longitude));
+            }
+            if (criteria.getLatitude() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getLatitude(), UserProfile_.latitude));
+            }
             if (criteria.getUserId() != null) {
                 specification = specification.and(buildSpecification(criteria.getUserId(),
                     root -> root.join(UserProfile_.user, JoinType.LEFT).get(User_.id)));

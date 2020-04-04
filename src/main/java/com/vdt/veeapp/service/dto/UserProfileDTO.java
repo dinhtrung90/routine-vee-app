@@ -20,6 +20,10 @@ public class UserProfileDTO implements Serializable {
 
     private String coverURl;
 
+    private Double longitude;
+
+    private Double latitude;
+
 
     private Long userId;
 
@@ -63,6 +67,22 @@ public class UserProfileDTO implements Serializable {
 
     public void setCoverURl(String coverURl) {
         this.coverURl = coverURl;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
     }
 
     public Long getUserId() {
@@ -110,6 +130,8 @@ public class UserProfileDTO implements Serializable {
             ", fullName='" + getFullName() + "'" +
             ", avartarUrl='" + getAvartarUrl() + "'" +
             ", coverURl='" + getCoverURl() + "'" +
+            ", longitude=" + getLongitude() +
+            ", latitude=" + getLatitude() +
             ", userId=" + getUserId() +
             ", userLogin='" + getUserLogin() + "'" +
             "}";

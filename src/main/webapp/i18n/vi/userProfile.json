@@ -20,6 +20,8 @@
       "fullName": "Full Name",
       "avartarUrl": "Avartar Url",
       "coverURl": "Cover U Rl",
+      "longitude": "Longitude",
+      "latitude": "Latitude",
       "user": "User",
       "userGroups": "User Groups"
     }

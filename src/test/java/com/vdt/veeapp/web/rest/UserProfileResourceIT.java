@@ -49,6 +49,14 @@ public class UserProfileResourceIT {
     private static final String DEFAULT_COVER_U_RL = "AAAAAAAAAA";
     private static final String UPDATED_COVER_U_RL = "BBBBBBBBBB";
 
+    private static final Double DEFAULT_LONGITUDE = 1D;
+    private static final Double UPDATED_LONGITUDE = 2D;
+    private static final Double SMALLER_LONGITUDE = 1D - 1D;
+
+    private static final Double DEFAULT_LATITUDE = 1D;
+    private static final Double UPDATED_LATITUDE = 2D;
+    private static final Double SMALLER_LATITUDE = 1D - 1D;
+
     @Autowired
     private UserProfileRepository userProfileRepository;
 
@@ -80,7 +88,9 @@ public class UserProfileResourceIT {
             .userKey(DEFAULT_USER_KEY)
             .fullName(DEFAULT_FULL_NAME)
             .avartarUrl(DEFAULT_AVARTAR_URL)
-            .coverURl(DEFAULT_COVER_U_RL);
+            .coverURl(DEFAULT_COVER_U_RL)
+            .longitude(DEFAULT_LONGITUDE)
+            .latitude(DEFAULT_LATITUDE);
         return userProfile;
     }
     /**
@@ -94,7 +104,9 @@ public class UserProfileResourceIT {
             .userKey(UPDATED_USER_KEY)
             .fullName(UPDATED_FULL_NAME)
             .avartarUrl(UPDATED_AVARTAR_URL)
-            .coverURl(UPDATED_COVER_U_RL);
+            .coverURl(UPDATED_COVER_U_RL)
+            .longitude(UPDATED_LONGITUDE)
+            .latitude(UPDATED_LATITUDE);
         return userProfile;
     }
 
@@ -123,6 +135,8 @@ public class UserProfileResourceIT {
         assertThat(testUserProfile.getFullName()).isEqualTo(DEFAULT_FULL_NAME);
         assertThat(testUserProfile.getAvartarUrl()).isEqualTo(DEFAULT_AVARTAR_URL);
         assertThat(testUserProfile.getCoverURl()).isEqualTo(DEFAULT_COVER_U_RL);
+        assertThat(testUserProfile.getLongitude()).isEqualTo(DEFAULT_LONGITUDE);
+        assertThat(testUserProfile.getLatitude()).isEqualTo(DEFAULT_LATITUDE);
     }
 
     @Test
@@ -179,7 +193,9 @@ public class UserProfileResourceIT {
             .andExpect(jsonPath("$.[*].userKey").value(hasItem(DEFAULT_USER_KEY)))
             .andExpect(jsonPath("$.[*].fullName").value(hasItem(DEFAULT_FULL_NAME)))
             .andExpect(jsonPath("$.[*].avartarUrl").value(hasItem(DEFAULT_AVARTAR_URL)))
-            .andExpect(jsonPath("$.[*].coverURl").value(hasItem(DEFAULT_COVER_U_RL)));
+            .andExpect(jsonPath("$.[*].coverURl").value(hasItem(DEFAULT_COVER_U_RL)))
+            .andExpect(jsonPath("$.[*].longitude").value(hasItem(DEFAULT_LONGITUDE.doubleValue())))
+            .andExpect(jsonPath("$.[*].latitude").value(hasItem(DEFAULT_LATITUDE.doubleValue())));
     }
     
     @Test
@@ -196,7 +212,9 @@ public class UserProfileResourceIT {
             .andExpect(jsonPath("$.userKey").value(DEFAULT_USER_KEY))
             .andExpect(jsonPath("$.fullName").value(DEFAULT_FULL_NAME))
             .andExpect(jsonPath("$.avartarUrl").value(DEFAULT_AVARTAR_URL))
-            .andExpect(jsonPath("$.coverURl").value(DEFAULT_COVER_U_RL));
+            .andExpect(jsonPath("$.coverURl").value(DEFAULT_COVER_U_RL))
+            .andExpect(jsonPath("$.longitude").value(DEFAULT_LONGITUDE.doubleValue()))
+            .andExpect(jsonPath("$.latitude").value(DEFAULT_LATITUDE.doubleValue()));
     }
 
 
@@ -533,6 +551,216 @@ public class UserProfileResourceIT {
 
     @Test
     @Transactional
+    public void getAllUserProfilesByLongitudeIsEqualToSomething() throws Exception {
+        // Initialize the database
+        userProfileRepository.saveAndFlush(userProfile);
+
+        // Get all the userProfileList where longitude equals to DEFAULT_LONGITUDE
+        defaultUserProfileShouldBeFound("longitude.equals=" + DEFAULT_LONGITUDE);
+
+        // Get all the userProfileList where longitude equals to UPDATED_LONGITUDE
+        defaultUserProfileShouldNotBeFound("longitude.equals=" + UPDATED_LONGITUDE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllUserProfilesByLongitudeIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        userProfileRepository.saveAndFlush(userProfile);
+
+        // Get all the userProfileList where longitude not equals to DEFAULT_LONGITUDE
+        defaultUserProfileShouldNotBeFound("longitude.notEquals=" + DEFAULT_LONGITUDE);
+
+        // Get all the userProfileList where longitude not equals to UPDATED_LONGITUDE
+        defaultUserProfileShouldBeFound("longitude.notEquals=" + UPDATED_LONGITUDE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllUserProfilesByLongitudeIsInShouldWork() throws Exception {
+        // Initialize the database
+        userProfileRepository.saveAndFlush(userProfile);
+
+        // Get all the userProfileList where longitude in DEFAULT_LONGITUDE or UPDATED_LONGITUDE
+        defaultUserProfileShouldBeFound("longitude.in=" + DEFAULT_LONGITUDE + "," + UPDATED_LONGITUDE);
+
+        // Get all the userProfileList where longitude equals to UPDATED_LONGITUDE
+        defaultUserProfileShouldNotBeFound("longitude.in=" + UPDATED_LONGITUDE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllUserProfilesByLongitudeIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        userProfileRepository.saveAndFlush(userProfile);
+
+        // Get all the userProfileList where longitude is not null
+        defaultUserProfileShouldBeFound("longitude.specified=true");
+
+        // Get all the userProfileList where longitude is null
+        defaultUserProfileShouldNotBeFound("longitude.specified=false");
+    }
+
+    @Test
+    @Transactional
+    public void getAllUserProfilesByLongitudeIsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        userProfileRepository.saveAndFlush(userProfile);
+
+        // Get all the userProfileList where longitude is greater than or equal to DEFAULT_LONGITUDE
+        defaultUserProfileShouldBeFound("longitude.greaterThanOrEqual=" + DEFAULT_LONGITUDE);
+
+        // Get all the userProfileList where longitude is greater than or equal to UPDATED_LONGITUDE
+        defaultUserProfileShouldNotBeFound("longitude.greaterThanOrEqual=" + UPDATED_LONGITUDE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllUserProfilesByLongitudeIsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        userProfileRepository.saveAndFlush(userProfile);
+
+        // Get all the userProfileList where longitude is less than or equal to DEFAULT_LONGITUDE
+        defaultUserProfileShouldBeFound("longitude.lessThanOrEqual=" + DEFAULT_LONGITUDE);
+
+        // Get all the userProfileList where longitude is less than or equal to SMALLER_LONGITUDE
+        defaultUserProfileShouldNotBeFound("longitude.lessThanOrEqual=" + SMALLER_LONGITUDE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllUserProfilesByLongitudeIsLessThanSomething() throws Exception {
+        // Initialize the database
+        userProfileRepository.saveAndFlush(userProfile);
+
+        // Get all the userProfileList where longitude is less than DEFAULT_LONGITUDE
+        defaultUserProfileShouldNotBeFound("longitude.lessThan=" + DEFAULT_LONGITUDE);
+
+        // Get all the userProfileList where longitude is less than UPDATED_LONGITUDE
+        defaultUserProfileShouldBeFound("longitude.lessThan=" + UPDATED_LONGITUDE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllUserProfilesByLongitudeIsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        userProfileRepository.saveAndFlush(userProfile);
+
+        // Get all the userProfileList where longitude is greater than DEFAULT_LONGITUDE
+        defaultUserProfileShouldNotBeFound("longitude.greaterThan=" + DEFAULT_LONGITUDE);
+
+        // Get all the userProfileList where longitude is greater than SMALLER_LONGITUDE
+        defaultUserProfileShouldBeFound("longitude.greaterThan=" + SMALLER_LONGITUDE);
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllUserProfilesByLatitudeIsEqualToSomething() throws Exception {
+        // Initialize the database
+        userProfileRepository.saveAndFlush(userProfile);
+
+        // Get all the userProfileList where latitude equals to DEFAULT_LATITUDE
+        defaultUserProfileShouldBeFound("latitude.equals=" + DEFAULT_LATITUDE);
+
+        // Get all the userProfileList where latitude equals to UPDATED_LATITUDE
+        defaultUserProfileShouldNotBeFound("latitude.equals=" + UPDATED_LATITUDE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllUserProfilesByLatitudeIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        userProfileRepository.saveAndFlush(userProfile);
+
+        // Get all the userProfileList where latitude not equals to DEFAULT_LATITUDE
+        defaultUserProfileShouldNotBeFound("latitude.notEquals=" + DEFAULT_LATITUDE);
+
+        // Get all the userProfileList where latitude not equals to UPDATED_LATITUDE
+        defaultUserProfileShouldBeFound("latitude.notEquals=" + UPDATED_LATITUDE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllUserProfilesByLatitudeIsInShouldWork() throws Exception {
+        // Initialize the database
+        userProfileRepository.saveAndFlush(userProfile);
+
+        // Get all the userProfileList where latitude in DEFAULT_LATITUDE or UPDATED_LATITUDE
+        defaultUserProfileShouldBeFound("latitude.in=" + DEFAULT_LATITUDE + "," + UPDATED_LATITUDE);
+
+        // Get all the userProfileList where latitude equals to UPDATED_LATITUDE
+        defaultUserProfileShouldNotBeFound("latitude.in=" + UPDATED_LATITUDE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllUserProfilesByLatitudeIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        userProfileRepository.saveAndFlush(userProfile);
+
+        // Get all the userProfileList where latitude is not null
+        defaultUserProfileShouldBeFound("latitude.specified=true");
+
+        // Get all the userProfileList where latitude is null
+        defaultUserProfileShouldNotBeFound("latitude.specified=false");
+    }
+
+    @Test
+    @Transactional
+    public void getAllUserProfilesByLatitudeIsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        userProfileRepository.saveAndFlush(userProfile);
+
+        // Get all the userProfileList where latitude is greater than or equal to DEFAULT_LATITUDE
+        defaultUserProfileShouldBeFound("latitude.greaterThanOrEqual=" + DEFAULT_LATITUDE);
+
+        // Get all the userProfileList where latitude is greater than or equal to UPDATED_LATITUDE
+        defaultUserProfileShouldNotBeFound("latitude.greaterThanOrEqual=" + UPDATED_LATITUDE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllUserProfilesByLatitudeIsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        userProfileRepository.saveAndFlush(userProfile);
+
+        // Get all the userProfileList where latitude is less than or equal to DEFAULT_LATITUDE
+        defaultUserProfileShouldBeFound("latitude.lessThanOrEqual=" + DEFAULT_LATITUDE);
+
+        // Get all the userProfileList where latitude is less than or equal to SMALLER_LATITUDE
+        defaultUserProfileShouldNotBeFound("latitude.lessThanOrEqual=" + SMALLER_LATITUDE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllUserProfilesByLatitudeIsLessThanSomething() throws Exception {
+        // Initialize the database
+        userProfileRepository.saveAndFlush(userProfile);
+
+        // Get all the userProfileList where latitude is less than DEFAULT_LATITUDE
+        defaultUserProfileShouldNotBeFound("latitude.lessThan=" + DEFAULT_LATITUDE);
+
+        // Get all the userProfileList where latitude is less than UPDATED_LATITUDE
+        defaultUserProfileShouldBeFound("latitude.lessThan=" + UPDATED_LATITUDE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllUserProfilesByLatitudeIsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        userProfileRepository.saveAndFlush(userProfile);
+
+        // Get all the userProfileList where latitude is greater than DEFAULT_LATITUDE
+        defaultUserProfileShouldNotBeFound("latitude.greaterThan=" + DEFAULT_LATITUDE);
+
+        // Get all the userProfileList where latitude is greater than SMALLER_LATITUDE
+        defaultUserProfileShouldBeFound("latitude.greaterThan=" + SMALLER_LATITUDE);
+    }
+
+
+    @Test
+    @Transactional
     public void getAllUserProfilesByUserIsEqualToSomething() throws Exception {
         // Initialize the database
         userProfileRepository.saveAndFlush(userProfile);
@@ -581,7 +809,9 @@ public class UserProfileResourceIT {
             .andExpect(jsonPath("$.[*].userKey").value(hasItem(DEFAULT_USER_KEY)))
             .andExpect(jsonPath("$.[*].fullName").value(hasItem(DEFAULT_FULL_NAME)))
             .andExpect(jsonPath("$.[*].avartarUrl").value(hasItem(DEFAULT_AVARTAR_URL)))
-            .andExpect(jsonPath("$.[*].coverURl").value(hasItem(DEFAULT_COVER_U_RL)));
+            .andExpect(jsonPath("$.[*].coverURl").value(hasItem(DEFAULT_COVER_U_RL)))
+            .andExpect(jsonPath("$.[*].longitude").value(hasItem(DEFAULT_LONGITUDE.doubleValue())))
+            .andExpect(jsonPath("$.[*].latitude").value(hasItem(DEFAULT_LATITUDE.doubleValue())));
 
         // Check, that the count call also returns 1
         restUserProfileMockMvc.perform(get("/api/user-profiles/count?sort=id,desc&" + filter))
@@ -632,7 +862,9 @@ public class UserProfileResourceIT {
             .userKey(UPDATED_USER_KEY)
             .fullName(UPDATED_FULL_NAME)
             .avartarUrl(UPDATED_AVARTAR_URL)
-            .coverURl(UPDATED_COVER_U_RL);
+            .coverURl(UPDATED_COVER_U_RL)
+            .longitude(UPDATED_LONGITUDE)
+            .latitude(UPDATED_LATITUDE);
         UserProfileDTO userProfileDTO = userProfileMapper.toDto(updatedUserProfile);
 
         restUserProfileMockMvc.perform(put("/api/user-profiles")
@@ -648,6 +880,8 @@ public class UserProfileResourceIT {
         assertThat(testUserProfile.getFullName()).isEqualTo(UPDATED_FULL_NAME);
         assertThat(testUserProfile.getAvartarUrl()).isEqualTo(UPDATED_AVARTAR_URL);
         assertThat(testUserProfile.getCoverURl()).isEqualTo(UPDATED_COVER_U_RL);
+        assertThat(testUserProfile.getLongitude()).isEqualTo(UPDATED_LONGITUDE);
+        assertThat(testUserProfile.getLatitude()).isEqualTo(UPDATED_LATITUDE);
     }
 
     @Test

@@ -39,6 +39,14 @@
         {
             "fieldName": "coverURl",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "longitude",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "latitude",
+            "fieldType": "Double"
         }
     ],
     "changelogDate": "20200322071453",

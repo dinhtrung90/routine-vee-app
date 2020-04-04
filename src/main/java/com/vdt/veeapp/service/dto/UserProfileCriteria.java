@@ -34,6 +34,10 @@ public class UserProfileCriteria implements Serializable, Criteria {
 
     private StringFilter coverURl;
 
+    private DoubleFilter longitude;
+
+    private DoubleFilter latitude;
+
     private LongFilter userId;
 
     private LongFilter userGroupsId;
@@ -47,6 +51,8 @@ public class UserProfileCriteria implements Serializable, Criteria {
         this.fullName = other.fullName == null ? null : other.fullName.copy();
         this.avartarUrl = other.avartarUrl == null ? null : other.avartarUrl.copy();
         this.coverURl = other.coverURl == null ? null : other.coverURl.copy();
+        this.longitude = other.longitude == null ? null : other.longitude.copy();
+        this.latitude = other.latitude == null ? null : other.latitude.copy();
         this.userId = other.userId == null ? null : other.userId.copy();
         this.userGroupsId = other.userGroupsId == null ? null : other.userGroupsId.copy();
     }
@@ -96,6 +102,22 @@ public class UserProfileCriteria implements Serializable, Criteria {
         this.coverURl = coverURl;
     }
 
+    public DoubleFilter getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(DoubleFilter longitude) {
+        this.longitude = longitude;
+    }
+
+    public DoubleFilter getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(DoubleFilter latitude) {
+        this.latitude = latitude;
+    }
+
     public LongFilter getUserId() {
         return userId;
     }
@@ -128,6 +150,8 @@ public class UserProfileCriteria implements Serializable, Criteria {
             Objects.equals(fullName, that.fullName) &&
             Objects.equals(avartarUrl, that.avartarUrl) &&
             Objects.equals(coverURl, that.coverURl) &&
+            Objects.equals(longitude, that.longitude) &&
+            Objects.equals(latitude, that.latitude) &&
             Objects.equals(userId, that.userId) &&
             Objects.equals(userGroupsId, that.userGroupsId);
     }
@@ -140,6 +164,8 @@ public class UserProfileCriteria implements Serializable, Criteria {
         fullName,
         avartarUrl,
         coverURl,
+        longitude,
+        latitude,
         userId,
         userGroupsId
         );
@@ -153,6 +179,8 @@ public class UserProfileCriteria implements Serializable, Criteria {
                 (fullName != null ? "fullName=" + fullName + ", " : "") +
                 (avartarUrl != null ? "avartarUrl=" + avartarUrl + ", " : "") +
                 (coverURl != null ? "coverURl=" + coverURl + ", " : "") +
+                (longitude != null ? "longitude=" + longitude + ", " : "") +
+                (latitude != null ? "latitude=" + latitude + ", " : "") +
                 (userId != null ? "userId=" + userId + ", " : "") +
                 (userGroupsId != null ? "userGroupsId=" + userGroupsId + ", " : "") +
             "}";
